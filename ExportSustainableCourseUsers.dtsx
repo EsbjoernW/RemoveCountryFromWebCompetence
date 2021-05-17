@@ -1,0 +1,2215 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2008 11:07:41 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC-STH-0791"
+  DTS:CreatorName="SWECO\ancg"
+  DTS:DTSID="{5A02F88C-DC5B-49D1-A7AE-D3B848BD0FC1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="ExportSustainableCourseUsers"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="229"
+  DTS:VersionGUID="{0447A934-46B4-4BEC-9DF6-CAD374B4C816}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="configpath"
+      DTS:ConfigurationType="5"
+      DTS:CreationName=""
+      DTS:DTSID="{5E75DF77-954D-465D-8CE4-084AE39172F3}"
+      DTS:ObjectName="Global config" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">3,7,OnError,12,OnTaskFailed,9,OnWarning</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export users from core"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{bf90f242-31c2-44e0-b8d5-24793b4b9488}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export users from core"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export users from core\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1053"
+              name="Flat File Destination"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header">Förnamn	Efternamn	LoginId	Email	Mobil	Chef	Bolag	Division	BusinessUnit	SubBusinessUnit	RE	Befattning	Resultatenhet	Kontor	Språk	Anställningstyp	Kön	Födelsdatum	Ålder	Startdatum	Landspråk</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export users from core\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="{A6ED63AD-3E6A-4D27-B44E-170BEAAFEA21}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Users]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Förnamn]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Förnamn"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Förnamn]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Förnamn]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Efternamn]"
+                      cachedDataType="wstr"
+                      cachedLength="151"
+                      cachedName="Efternamn"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Efternamn]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Efternamn]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[LoginId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="LoginId"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LoginId]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[LoginId]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Mobil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Mobil"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Mobil]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Mobil]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Chef]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Chef"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Chef]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Chef]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Bolag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Bolag"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Bolag]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Bolag]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Division]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Division"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Division]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Division]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[BusinessUnit]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BusinessUnit"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessUnit]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[BusinessUnit]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[SubBusinessUnit]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SubBusinessUnit"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubBusinessUnit]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[SubBusinessUnit]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[RE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RE"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[RE]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[RE]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Befattning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Befattning"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Befattning]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Befattning]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Resultatenhet]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Resultatenhet"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Resultatenhet]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Resultatenhet]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Kontor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Kontor"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Kontor]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kontor]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Språk]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="Språk"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Språk]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Språk]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Anställningstyp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Anställningstyp"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Anställningstyp]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Anställningstyp]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Kön]"
+                      cachedDataType="i4"
+                      cachedName="Kön"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Kön]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kön]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Födelsdatum]"
+                      cachedDataType="i4"
+                      cachedName="Födelsdatum"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Födelsdatum]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Födelsdatum]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Ålder]"
+                      cachedDataType="i4"
+                      cachedName="Ålder"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ålder]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Ålder]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Startdatum]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Startdatum"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Startdatum]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Startdatum]" />
+                    <inputColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].Columns[Landspråk]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Landspråk"
+                      externalMetadataColumnId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Landspråk]"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Landspråk]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Förnamn]"
+                      dataType="wstr"
+                      length="100"
+                      name="Förnamn" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Efternamn]"
+                      dataType="wstr"
+                      length="151"
+                      name="Efternamn" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LoginId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="LoginId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Mobil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Mobil" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Chef]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Chef" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Bolag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Bolag" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Division]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Division" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessUnit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BusinessUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubBusinessUnit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SubBusinessUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[RE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RE" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Befattning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Befattning" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Resultatenhet]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Resultatenhet" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Kontor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Kontor" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Språk]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="Språk" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Anställningstyp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Anställningstyp" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Kön]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Kön" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Födelsdatum]"
+                      dataType="dbDate"
+                      name="Födelsdatum" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ålder]"
+                      dataType="i4"
+                      name="Ålder" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Startdatum]"
+                      dataType="dbTimeStamp"
+                      name="Startdatum" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Landspråk]"
+                      dataType="wstr"
+                      length="50"
+                      name="Landspråk" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export users from core\Get Managers"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Get Managers"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	em.EmployeeId,
+	e.login AS EmployeeLoginId,
+	em.ManagerId AS ManagerLoginId,
+	(Select  Login from v1Employee ee where em.ManagerId = ee.EmployeeID) AS ManagerLogin
+FROM swecocore.dbo.v1EmployeeManager em
+LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId
+WHERE
+e.Login like ('DK%')</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+	em.EmployeeId,
+	e.login AS EmployeeLoginId,
+	em.ManagerId AS ManagerLoginId,
+	(Select  Login from v1Employee ee where em.ManagerId = ee.EmployeeID) AS ManagerLogin
+FROM swecocore.dbo.v1EmployeeManager em
+LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId
+WHERE
+e.Login like ('DK%')) [refTable]
+where [refTable].[EmployeeId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="EmployeeId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EmployeeLoginId" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ManagerLoginId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ManagerLogin" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DomainLogin]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export users from core\Get Managers.Connections[OleDbConnection]"
+                  connectionManagerID="{5E2AD1A3-C49A-45FC-9ECB-B40150E8AB25}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SwecoCore]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export users from core\Get Managers.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export users from core\Get Managers.Inputs[Lookup Input].Columns[DomainLogin]"
+                      cachedDataType="i4"
+                      cachedName="DomainLogin"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DomainLogin]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">EmployeeId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export users from core\Get Managers.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Export users from core\Get Managers.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export users from core\Get Managers.Outputs[Lookup Match Output].Columns[ManagerLogin]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="20"
+                      lineageId="Package\Export users from core\Get Managers.Outputs[Lookup Match Output].Columns[ManagerLogin]"
+                      name="ManagerLogin"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ManagerLogin</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Export users from core\Get Managers.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Export users from core\Get Managers.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Export users from core\Get Managers.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export users from core\SwecoCore"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SwecoCore"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+e.FirstName,
+e.LastName, 
+e.Login AS LoginId,
+ISNULL(NULLIF (e.email,'-'),' ') as email,
+CAST(REPLACE(REPLACE(ee.Mobilephone, CHAR(13), ''), CHAR(10), '') as varchar(50)) as MobilePhone,
+CAST(c.CompanyID + ' ' + RTRIM(c.CompanyName)as varchar(50)) as CompanyName,
+--CAST(ba.Name as varchar(25)) as BusniessAreaName,
+CAST(t.DivisionID + ' ' + bd.DivisionName as varchar(50))as BusinessDivisionId,
+CAST(t.BusinessUnitID +' '+ bu.BusinessUnitName as varchar(50)) as BusinessUnitId,
+CAST(ISNULL(REPLACE(REPLACE(CAST(t.DepartmentId +' ' + su.DepartmentName as varchar(50)), CHAR(10), ''), CHAR(13), ''), '.') as varchar(50) ) as SubUnitId,
+CAST(REPLACE(REPLACE(CAST(t.TeamId + ' ' + t.TeamName as varchar(50)), CHAR(13), ''), CHAR(10), '') as varchar(50)) as DepartmentId,
+CAST(REPLACE(REPLACE(CAST(cttl.SubCategoryName as varchar(50)), CHAR(13), ''), CHAR(10), '') as varchar(50)) as EmployeeTitleNAme,
+CAST(REPLACE(REPLACE(CAST(t.TeamId + ' ' + t.TeamName as varchar(50)), CHAR(13), ''), CHAR(10), '') as varchar(50)) as RE,
+CAST(a.City as varchar(20)) as Office,
+CAST(let.Name as varchar(20)) as EmployeeTypeName, 
+lc.Code as CountryCode,
+CAST(e.EmployeeId as int) as DomainLogin,
+
+--CASE WHEN lc.Code = 'SE' THEN 
+--CASE WHEN ISNULL(e.Gender,'') = 'M'  THEN 0 ELSE 1 End
+--ELSE NULL END as Gender,
+NULL as Gender,
+
+--CASE WHEN lc.Code = 'SE' THEN (Select top 1 Convert(date, e.Birthdate) from v2EmployeeCompany ec where DATEDIFF(hour,e.Birthdate,GETDATE())/8766 &lt; '80') ELSE NULL END as Birthdate,
+NULL as Birthdate,
+
+--CASE WHEN lc.Code = 'SE' THEN  (Select top 1 DATEDIFF (hour,e.Birthdate,GETDATE())/8766 from  v2EmployeeCompany ec where DATEDIFF(hour,e.Birthdate,GETDATE())/8766 &lt; '80')  Else NULL END AS Age,
+NULL as Age,
+
+e.start as StartDate,
+langu.Name as Language
+FROM [dbo].[v2EmployeeCompany] e
+LEFT JOIN [dbo].[v1EmployeeExtended] ee on ee.EmployeeId = e.EmployeeId
+LEFT JOIN v1LocAddress a ON a.addressId = ee.AddressID
+LEFT JOIN [Core].[OrgTeam] t ON e.DepartmentId = t.TeamId AND e.CompanyId = t.CompanyId
+LEFT JOIN [Core].[OrgCompany] c ON e.CompanyId = c.CompanyID
+LEFT JOIN [Core].[OrgBusinessArea] ba ON t.BusinessAreaID = ba.BusinessAreaID
+LEFT JOIN [Core].[OrgDivision] bd ON bd.DivisionID = t.DivisionID AND bd.BusinessAreaID = t.BusinessAreaID
+LEFT JOIN [Core].[OrgBusinessUnit] bu ON bu.BusinessUnitID = t.BusinessUnitID AND bu.BusinessAreaID = t.BusinessAreaID
+LEFT JOIN [Core].[OrgDepartment] su ON su.DepartmentId = t.DepartmentId AND su.BusinessAreaID = t.BusinessAreaID
+LEFT JOIN [dbo].[v1EmployeeType] et ON e.EmployeeTypeId = et.EmployeeTypeId
+JOIN [dbo].[LangEmployeeType] let on let.EmployeeTypeID=et.EmployeeTypeId and let.LangID='13'
+LEFT JOIN swecocore.dbo.v1EmployeeTitle ettl on e.EmployeeId = ettl.EmployeeId
+LEFT JOIN swecocore.dbo.v2Categories cttl on ettl.TitleId = cttl.SubCategoryID and cttl.[LangID] = 1
+LEFT JOIN [dbo].[v2EmployeeContact] ec on ec.[Login] = e.[Login] AND ec.Domain = e.Domain
+LEFT JOIN swecocore.dbo.v1LocCountry lc on lc.CountryID = c.CountryId
+LEFT JOIN v1Language langu on langu.LangID = e.LangId
+WHERE 
+ (e.[End] IS NULL OR e.[End] &gt;= getdate())and et.EmployeeTypeId in (1,2,3,5,8,9)
+and  (e.Start &lt; DATEADD(day, +30, GETDATE()))
+--and lc.Code IN('SE', 'NO', 'FI', 'DK')
+and lc.Code = 'DK'
+
+GROUP BY 
+e.FirstName,
+e.LastName,
+e.[Login],
+e.EmployeeId,
+e.email,
+t.TeamId,
+t.TeamName,
+RTRIM(c.CompanyName),
+c.companyId,
+e.EmployeeTypeId,
+let.Name,
+t.BusinessAreaID,
+ba.BusinessAreaName,
+t.DivisionID,
+bd.DivisionName,
+t.BusinessUnitId,
+bu.BusinessUnitName,
+t.DepartmentId,
+su.DepartmentName,
+cttl.SubCategoryCode, 
+cttl.SubCategoryName,
+ee.Mobilephone,
+a.City,
+lc.Code,
+e.Gender,
+e.Birthdate,
+e.start,
+langu.Name
+ORDER BY e.[Login]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export users from core\SwecoCore.Connections[OleDbConnection]"
+                  connectionManagerID="{5E2AD1A3-C49A-45FC-9ECB-B40150E8AB25}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SwecoCore]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="100"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="100"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LoginId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[LoginId]"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LoginId]"
+                      name="LoginId"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      length="150"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[MobilePhone]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[MobilePhone]"
+                      name="MobilePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessDivisionId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionId]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessDivisionId]"
+                      name="BusinessDivisionId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[BusinessUnitId]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessUnitId]"
+                      name="BusinessUnitId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[SubUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[SubUnitId]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[SubUnitId]"
+                      name="SubUnitId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DepartmentId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[DepartmentId]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DepartmentId]"
+                      name="DepartmentId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTitleNAme]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTitleNAme]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTitleNAme]"
+                      name="EmployeeTitleNAme"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[RE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[RE]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[RE]"
+                      name="RE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Office]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Office]"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Office]"
+                      name="Office"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTypeName]"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]"
+                      name="EmployeeTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                      length="2"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                      name="CountryCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DomainLogin]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[DomainLogin]"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DomainLogin]"
+                      name="DomainLogin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Gender]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Birthdate]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Birthdate]"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Birthdate]"
+                      name="Birthdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Age]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Age]"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Age]"
+                      name="Age"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Language]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Language]"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Language]"
+                      name="Language"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="100"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="100"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[LoginId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="LoginId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MobilePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BusinessDivisionId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[BusinessUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BusinessUnitId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[SubUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SubUnitId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[DepartmentId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DepartmentId" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTitleNAme]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EmployeeTitleNAme" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[RE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RE" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Office]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Office" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTypeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="EmployeeTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[DomainLogin]"
+                      dataType="i4"
+                      name="DomainLogin" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                      dataType="i4"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Birthdate]"
+                      dataType="i4"
+                      name="Birthdate" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      dataType="dbTimeStamp"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].ExternalColumns[Language]"
+                      dataType="wstr"
+                      length="50"
+                      name="Language" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[LoginId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[LoginId]"
+                      name="LoginId" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[MobilePhone]"
+                      name="MobilePhone" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      name="CompanyName" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionId]"
+                      name="BusinessDivisionId" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[BusinessUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[BusinessUnitId]"
+                      name="BusinessUnitId" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[SubUnitId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[SubUnitId]"
+                      name="SubUnitId" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[DepartmentId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[DepartmentId]"
+                      name="DepartmentId" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[EmployeeTitleNAme]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[EmployeeTitleNAme]"
+                      name="EmployeeTitleNAme" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[RE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[RE]"
+                      name="RE" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Office]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Office]"
+                      name="Office" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[EmployeeTypeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[EmployeeTypeName]"
+                      name="EmployeeTypeName" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                      name="CountryCode" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[DomainLogin]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[DomainLogin]"
+                      name="DomainLogin" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Birthdate]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Birthdate]"
+                      name="Birthdate" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Age]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Age]"
+                      name="Age" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      name="StartDate" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Language]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[Language]"
+                      name="Language" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export users from core\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Export users from core\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="FirstName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[FirstName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Förnamn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[LoginId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="LoginId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LoginId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[LoginId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="email"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Email]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[MobilePhone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MobilePhone"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[MobilePhone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Mobil]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="LastName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LastName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Efternamn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[Age]"
+                      cachedDataType="i4"
+                      cachedName="Age"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Age]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Ålder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[StartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartDate"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[StartDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Startdatum]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[Language]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Language"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Language]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Landspråk]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[ManagerLogin]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="ManagerLogin"
+                      lineageId="Package\Export users from core\Get Managers.Outputs[Lookup Match Output].Columns[ManagerLogin]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Chef]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[CompanyName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CompanyName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CompanyName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Bolag]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[BusinessDivisionId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BusinessDivisionId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessDivisionId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Division]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[BusinessUnitId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BusinessUnitId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessUnitId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[BusinessUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[SubUnitId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SubUnitId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[SubUnitId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[SubBusinessUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[DepartmentId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DepartmentId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DepartmentId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[RE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[EmployeeTitleNAme]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="EmployeeTitleNAme"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTitleNAme]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Befattning]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[RE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RE"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[RE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Resultatenhet]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[Office]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Office"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Office]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kontor]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[CountryCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CountryCode"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CountryCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Språk]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[EmployeeTypeName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="EmployeeTypeName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Anställningstyp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[Gender]"
+                      cachedDataType="i4"
+                      cachedName="Gender"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kön]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 1].Columns[Birthdate]"
+                      cachedDataType="i4"
+                      cachedName="Birthdate"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Birthdate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Födelsdatum]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Export users from core\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="FirstName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[FirstName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Förnamn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[LoginId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="LoginId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LoginId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[LoginId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="email"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Email]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[MobilePhone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MobilePhone"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[MobilePhone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Mobil]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="LastName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[LastName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Efternamn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[Age]"
+                      cachedDataType="i4"
+                      cachedName="Age"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Age]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Ålder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[StartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartDate"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[StartDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Startdatum]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[Language]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Language"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Language]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Landspråk]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[CompanyName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CompanyName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CompanyName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Bolag]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[BusinessDivisionId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BusinessDivisionId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessDivisionId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Division]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[BusinessUnitId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BusinessUnitId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[BusinessUnitId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[BusinessUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[SubUnitId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SubUnitId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[SubUnitId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[SubBusinessUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[DepartmentId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DepartmentId"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[DepartmentId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[RE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[EmployeeTitleNAme]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="EmployeeTitleNAme"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTitleNAme]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Befattning]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[RE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RE"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[RE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Resultatenhet]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[Office]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Office"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Office]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kontor]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[CountryCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CountryCode"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[CountryCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Språk]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[EmployeeTypeName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="EmployeeTypeName"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Anställningstyp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[Gender]"
+                      cachedDataType="i4"
+                      cachedName="Gender"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kön]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export users from core\Union All.Inputs[Union All Input 2].Columns[Birthdate]"
+                      cachedDataType="i4"
+                      cachedName="Birthdate"
+                      lineageId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output].Columns[Birthdate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Födelsdatum]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Export users from core\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export users from core\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Förnamn]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Förnamn]"
+                      name="Förnamn" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Efternamn]"
+                      dataType="wstr"
+                      length="151"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Efternamn]"
+                      name="Efternamn" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[LoginId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[LoginId]"
+                      name="LoginId" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Mobil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Mobil]"
+                      name="Mobil" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Chef]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Chef]"
+                      name="Chef" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Bolag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Bolag]"
+                      name="Bolag" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Division]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Division]"
+                      name="Division" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[BusinessUnit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[BusinessUnit]"
+                      name="BusinessUnit" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[SubBusinessUnit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[SubBusinessUnit]"
+                      name="SubBusinessUnit" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[RE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[RE]"
+                      name="RE" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Befattning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Befattning]"
+                      name="Befattning" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Resultatenhet]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Resultatenhet]"
+                      name="Resultatenhet" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kontor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kontor]"
+                      name="Kontor" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Språk]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Språk]"
+                      name="Språk" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Anställningstyp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Anställningstyp]"
+                      name="Anställningstyp" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Ålder]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Ålder]"
+                      name="Ålder" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Startdatum]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Startdatum]"
+                      name="Startdatum" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Landspråk]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Landspråk]"
+                      name="Landspråk" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kön]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Kön]"
+                      name="Kön" />
+                    <outputColumn
+                      refId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Födelsdatum]"
+                      dataType="i4"
+                      lineageId="Package\Export users from core\Union All.Outputs[Union All Output 1].Columns[Födelsdatum]"
+                      name="Födelsdatum" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export users from core.Paths[Lookup Error Output]"
+              endId="Package\Export users from core\Union All.Inputs[Union All Input 2]"
+              name="Lookup Error Output"
+              startId="Package\Export users from core\Get Managers.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\Export users from core.Paths[Lookup Match Output]"
+              endId="Package\Export users from core\Union All.Inputs[Union All Input 1]"
+              name="Lookup Match Output"
+              startId="Package\Export users from core\Get Managers.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Export users from core.Paths[OLE DB Source Output]"
+              endId="Package\Export users from core\Get Managers.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export users from core\SwecoCore.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Export users from core.Paths[Union All Output 1]"
+              endId="Package\Export users from core\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Export users from core\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Export users from core"
+          TopLeft="21.9999997392297,83.2333337672551" />
+        <AnnotationLayout
+          Text="New Dataflow fetching data from core active since 29th oct"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="344,40"
+          Id="6c69b60c-5ad3-4519-84c6-c4bf96b3d41f"
+          TopLeft="259,103" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export users from core">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Export users from core\Union All"
+          TopLeft="347.166666600439,239.43333328512" />
+        <NodeLayout
+          Size="132,41.6"
+          Id="Package\Export users from core\SwecoCore"
+          TopLeft="338.5,28.5" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Export users from core\Flat File Destination"
+          TopLeft="325,326" />
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Export users from core\Get Managers"
+          TopLeft="333.66666669978,111.033333305783" />
+        <EdgeLayout
+          Id="Package\Export users from core.Paths[Union All Output 1]"
+          TopLeft="409.683333300219,281.03333328512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.96666671488"
+              Start="0,0"
+              End="0,37.46666671488">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.46666671488" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export users from core.Paths[OLE DB Source Output]"
+          TopLeft="405.48333334989,70.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.9333333057828"
+              Start="0,0"
+              End="0,33.4333333057828">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.4333333057828" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export users from core.Paths[Lookup Match Output]"
+          TopLeft="406.816666650109,152.633333305783">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.799999979337"
+              Start="0,0"
+              End="0,79.299999979337">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.299999979337" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,33.8453124896685,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export users from core.Paths[Lookup Error Output]"
+          TopLeft="454.316664762629,152.633333305783">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.799999979337"
+              Start="0,0"
+              End="0,79.299999979337">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.299999979337" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-45.86638671875,33.8453124896685,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Fetching users and insert into a text file to send to WebCompetence via a component."
+          ParentId="Package\Export users from core"
+          FontInfo="{assembly:Null}"
+          Size="484.8,40"
+          Id="6f0fefcb-9b27-4da5-ad69-2793fa2cd074"
+          TopLeft="681,26" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export users from core\SwecoCore">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export users from core\Get Managers">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

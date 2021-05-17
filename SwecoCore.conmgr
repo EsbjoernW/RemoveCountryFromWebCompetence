@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SwecoCore"
+  DTS:DTSID="{5E2AD1A3-C49A-45FC-9ECB-B40150E8AB25}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnStrSwecoCore]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=coreDEV.sql.sweco.se;User ID=swecocore;Initial Catalog=swecocore;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="Y8rJ9EOcz7U="
+        p4:IV="SpuCd1Mx+tdIQOBcm4xcRg=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">20h3tcO90T6CePHKjg9koDoIxHchGIqNaZwazVacKM9x+8/fYQJSLetLfPQUiV8F8cOfWnwNP8MUFCS1jY8LTBxv1JsEx3i0XM6vKxSPCz/yZ5R5V246nQSYKkBru3S0FFpMUTr4/0wVmehMT/tP1VU7chhEkSGN+usXjuXsDiI=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HTTP"
+  DTS:DTSID="{EEFBC5F2-7B9F-4951-BF10-C7D257727A6A}"
+  DTS:CreationName="HTTP">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnHTTP]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="http://intranet-test.sweco.se/Services/SiteUserService.asmx?WSDL">
+      <DTS:HttpConnection
+        DTS:ServerURL="http://intranet-test.sweco.se/Services/SiteUserService.asmx?WSDL">
+        <DTS:Property
+          DTS:Name="ServerPassword"
+          Sensitive="1"
+          p5:Salt="WRbmcyeYbm8="
+          p5:IV="g8fhMVG3p2wVdSo6qQeKeg=="
+          p5:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p5="www.microsoft.com/SqlServer/SSIS">LJm3Pwm4bDjG7EMUkvaeoZ3LsWpPjm05t1Lq60R1Dej7PKSvmv5W6peWWqLgzTveDnwbv0EI4tccbburLmEir4AgOUaoJQlJV5yzekT2yxEOeV/rtlpZy4x+AT75vvTsq2ju1A8siFIBiHSPafx3dYK1n08QZ47O6AGRn0v4LYk=</DTS:Property>
+        <DTS:Property
+          DTS:Name="ProxyPassword"
+          Sensitive="1"
+          p5:Salt="uYRTQvti3Eg="
+          p5:IV="RPvSyiv6bEWoreO2TuzD+w=="
+          p5:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p5="www.microsoft.com/SqlServer/SSIS">f43mAI0auFjlhT9xQOTDfdDFZylSx9zvM1tqCyWPU5Lm/LsQFnaCnRLWG4UHoKYE5jg16MJWGfwsFquKSgNnc1JhDRGocfXfMVGjV6t/65f/15twPqNAPP1TupnST2zduAek35CSlPBpaZaCMzH08I6msfzdtAica6MWyvqn064=</DTS:Property>
+      </DTS:HttpConnection>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
