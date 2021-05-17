@@ -12,8 +12,8 @@
   DTS:ObjectName="ExportSustainableCourseUsers"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="230"
-  DTS:VersionGUID="{AB8B8236-EB52-4D6C-8A9E-B0009C736C1F}">
+  DTS:VersionBuild="231"
+  DTS:VersionGUID="{D6B9328A-D0DB-4A0C-B1FC-1454025CD09A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Configurations>
@@ -438,9 +438,7 @@
 	em.ManagerId AS ManagerLoginId,
 	(Select  Login from v1Employee ee where em.ManagerId = ee.EmployeeID) AS ManagerLogin
 FROM swecocore.dbo.v1EmployeeManager em
-LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId
-WHERE
-e.Login like ('DK%')</property>
+LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
@@ -452,9 +450,7 @@ e.Login like ('DK%')</property>
 	em.ManagerId AS ManagerLoginId,
 	(Select  Login from v1Employee ee where em.ManagerId = ee.EmployeeID) AS ManagerLogin
 FROM swecocore.dbo.v1EmployeeManager em
-LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId
-WHERE
-e.Login like ('DK%')) [refTable]
+LEFT JOIN v1Employee e on e.EmployeeID = em.EmployeeId) [refTable]
 where [refTable].[EmployeeId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -2077,7 +2073,7 @@ ORDER BY e.[Login]</property>
         <NodeLayout
           Size="145.6,41.6"
           Id="Package\Export users from core\Get Managers"
-          TopLeft="333.66666669978,111.033333305783" />
+          TopLeft="332.83333339956,110.166666632229" />
         <EdgeLayout
           Id="Package\Export users from core.Paths[Union All Output 1]"
           TopLeft="409.683333300219,281.03333328512">
@@ -2102,18 +2098,18 @@ ORDER BY e.[Login]</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Export users from core.Paths[OLE DB Source Output]"
-          TopLeft="405.48333334989,70.1">
+          TopLeft="405.06666669978,70.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.9333333057828"
+              EndConnector="0,40.0666666322287"
               Start="0,0"
-              End="0,33.4333333057828">
+              End="0,32.5666666322287">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.4333333057828" />
+                    End="0,32.5666666322287" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2124,49 +2120,49 @@ ORDER BY e.[Login]</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Export users from core.Paths[Lookup Match Output]"
-          TopLeft="406.816666650109,152.633333305783">
+          TopLeft="406.4,151.766666632229">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.799999979337"
+              EndConnector="0,87.6666666528913"
               Start="0,0"
-              End="0,79.299999979337">
+              End="0,80.1666666528913">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.299999979337" />
+                    End="0,80.1666666528913" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,33.8453124896685,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,34.2786458264456,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Export users from core.Paths[Lookup Error Output]"
-          TopLeft="454.316664762629,152.633333305783">
+          TopLeft="406.4,151.766666632229">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.799999979337"
+              EndConnector="0,87.6666666528913"
               Start="0,0"
-              End="0,79.299999979337">
+              End="0,80.1666666528913">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.299999979337" />
+                    End="0,80.1666666528913" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-45.86638671875,33.8453124896685,91.7327734375,11.609375"
+              BoundingBox="-45.86638671875,34.2786458264456,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2194,7 +2190,7 @@ ORDER BY e.[Login]</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2204,7 +2200,7 @@ ORDER BY e.[Login]</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
